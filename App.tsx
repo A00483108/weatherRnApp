@@ -45,6 +45,7 @@ const App: React.FC = () => {
     </NavigationContainer>
     </PaperProvider>
   );
+  
 };
 
 export default App;

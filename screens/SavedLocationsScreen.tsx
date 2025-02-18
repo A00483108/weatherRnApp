@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { Card, Text, Button, List } from 'react-native-paper';
 import axios from 'axios';
@@ -9,7 +9,6 @@ const SavedLocationsScreen: React.FC = () => {
   const [locations, setLocations] = useState<Location[]>([]);
   const [weatherData, setWeatherData] = useState<{ [key: number]: any }>({});
 
-  // Fetch saved locations when screen is focused
   const fetchLocations = async () => {
     const savedLocations = await getLocations();
     setLocations(savedLocations);
@@ -22,7 +21,6 @@ const SavedLocationsScreen: React.FC = () => {
     }, [])
   );
 
-  // Fetch weather for a selected location
   const fetchWeatherForLocation = async (id: number, latitude: number, longitude: number) => {
     try {
       const response = await axios.get('https://api.open-meteo.com/v1/forecast', {
@@ -41,56 +39,60 @@ const SavedLocationsScreen: React.FC = () => {
     }
   };
 
-  // Handle delete location
   const handleDelete = async (id: number) => {
     await deleteLocation(id);
-    fetchLocations(); // Refresh the list
+    fetchLocations();
   };
 
   return (
-    <View style={styles.container}>
-      <Text variant="titleLarge" style={styles.header}>
-        Saved Locations
-      </Text>
-
-      {locations.length === 0 ? (
-        <Text variant="bodyLarge" style={styles.emptyMessage}>
-          No saved locations yet.
+    <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
+      <View style={styles.container}>
+        <Text variant="titleLarge" style={styles.header}>
+          Saved Locations
         </Text>
-      ) : (
-        locations.map((item) => (
-          <Card key={item.id} mode="outlined" style={styles.card}>
-            <Card.Content>
-              <List.Item
-                title={item.city}
-                description={`Latitude: ${item.latitude}, Longitude: ${item.longitude}`}
-                left={(props) => <List.Icon {...props} icon="map-marker" />}
-              />
-              {weatherData[item.id] && (
-                <Text variant="bodyLarge" style={styles.weatherInfo}>
-                  🌡 Temp: {weatherData[item.id].temperature}°C | 💨 Wind: {weatherData[item.id].windspeed} km/h
-                </Text>
-              )}
-              <View style={styles.buttonContainer}>
-                <Button mode="contained-tonal" onPress={() => fetchWeatherForLocation(item.id, item.latitude, item.longitude)}>
-                  Fetch Weather
-                </Button>
-                <Button mode="text" textColor="red" onPress={() => handleDelete(item.id)}>
-                  Delete
-                </Button>
-              </View>
-            </Card.Content>
-          </Card>
-        ))
-      )}
-    </View>
+
+        {locations.length === 0 ? (
+          <Text variant="bodyLarge" style={styles.emptyMessage}>
+            No saved locations yet.
+          </Text>
+        ) : (
+          locations.map((item) => (
+            <Card key={item.id} mode="outlined" style={styles.card}>
+              <Card.Content>
+                <List.Item
+                  title={item.city}
+                  description={`Latitude: ${item.latitude}, Longitude: ${item.longitude}`}
+                  left={(props) => <List.Icon {...props} icon="map-marker" />}
+                />
+                {weatherData[item.id] && (
+                  <Text variant="bodyLarge" style={styles.weatherInfo}>
+                    🌡 Temp: {weatherData[item.id].temperature}°C | 💨 Wind: {weatherData[item.id].windspeed} km/h
+                  </Text>
+                )}
+                <View style={styles.buttonContainer}>
+                  <Button mode="contained-tonal" onPress={() => fetchWeatherForLocation(item.id, item.latitude, item.longitude)}>
+                    Fetch Weather
+                  </Button>
+                  <Button mode="text" textColor="red" onPress={() => handleDelete(item.id)}>
+                    Delete
+                  </Button>
+                </View>
+              </Card.Content>
+            </Card>
+          ))
+        )}
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    padding: 20,
+  },
   container: {
     flex: 1,
-    padding: 20,
     marginTop: 50,
   },
   header: {

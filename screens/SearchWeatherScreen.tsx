@@ -60,7 +60,7 @@ const SearchWeatherScreen = ({ navigation }: { navigation: any }) => {
     if (!city || latitude === null || longitude === null) return;
 
     const savedLocations = await getLocations();
-    if (savedLocations.length >= 4) {
+    if (savedLocations.length == 4) {
       setSnackbarMessage('⚠️ You can only save up to 4 locations.');
       setSnackbarVisible(true);
       return;
@@ -69,7 +69,7 @@ const SearchWeatherScreen = ({ navigation }: { navigation: any }) => {
     await saveLocation(city, latitude, longitude);
     setSnackbarMessage(`✅ ${city} has been saved.`);
     setSnackbarVisible(true);
-    navigation.goBack();
+    //navigation.goBack();
   };
 
   return (
