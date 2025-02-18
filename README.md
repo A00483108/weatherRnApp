@@ -26,6 +26,7 @@ A simple weather app built with **React Native (Expo)** that allows users to:
 ---
 
 ## 📂 Project Structure  
+```bash
 /weather-app
 ├── /src
 │   ├── /screens
@@ -40,17 +41,24 @@ A simple weather app built with **React Native (Expo)** that allows users to:
 │   ├── README.md
 │   ├── package.json
 │   ├── app.json
+```
 
+## 📥 Installation & Setup
 
-## 📥 Installation & Setup  
 1️⃣ Clone the repository:  
 ```sh
 git clone https://github.com/A00483108/weatherRnApp.git
 cd weatherRnApp
+```
 2️⃣ Install dependencies:
+```sh
 npm install
+```
 3️⃣ Start the development server:
+```sh
 npx expo start
+```
+
 
 ## 🚀 Features
 Current Location Weather: Get real-time weather updates for your GPS location.
@@ -59,9 +67,11 @@ Save Locations: Store up to 4 favorite cities for quick access.
 Remove Locations: Easily delete saved locations.
 Offline Storage: Uses SQLite to store saved cities locally.
 
+
 ## 📌 API Used
 This app uses the Open-Meteo API for weather and geolocation data.
 🔗 [Open-Meteo API Documentation](https://open-meteo.com/en/docs)
+
 
 ## 🏗️ How It Works
 1️⃣ Current Location Weather Screen
