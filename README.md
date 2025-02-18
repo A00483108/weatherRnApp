@@ -11,7 +11,7 @@ A simple weather app built with **React Native (Expo)** that allows users to:
 ## 📸 Screenshots  
 | Splash Screen | Current Location Weather | Search & Save | Saved Locations |
 |-----------------|-----------------|-----------------|-----------------|
-![Current Weather](assets/screenshot0.jpeg) | ![Current Weather](assets/screenshot1.jpeg) | ![Search Weather](assets/screenshot2.jpeg) | ![Saved Locations](assets/screenshot3.jpeg) |
+![Current Weather](assets/Screenshot0.jpeg) | ![Current Weather](assets/Screenshot1.jpeg) | ![Search Weather](assets/Screenshot2.jpeg) | ![Saved Locations](assets/Screenshot3.jpeg) |
 
 ---
 
