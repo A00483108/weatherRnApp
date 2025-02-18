@@ -87,9 +87,7 @@ Reloads automatically when navigated to.
 
 
 ## 🔧 Dependencies
-json
-Copy
-Edit
+``` json
 "dependencies": {
   "expo": "~49.0.0",
   "react": "18.2.0",
@@ -101,6 +99,7 @@ Edit
   "react-navigation": "^6.1.0",
   "react-navigation-tabs": "^6.5.2"
 }
+```
 
 ## 👨‍💻 Developed By
 💡 Sukanta Dey Amit
